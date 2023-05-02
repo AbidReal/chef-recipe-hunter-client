@@ -54,7 +54,7 @@ const NavigationBar = () => {
                           JobZone
                         </Link>
                         <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
-                          Start Applying
+                          Login
                         </button>
                         {/* dropdown close button */}
                         <div>
