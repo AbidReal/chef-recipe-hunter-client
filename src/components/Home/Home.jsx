@@ -6,11 +6,13 @@ import Services from "./Services";
 
 const Home = () => {
   return (
-    <div className="custom-container text-center">
+    <div>
       <Banner></Banner>
-      <ChefList></ChefList>
-      <Services></Services>
-      <Reviews></Reviews>
+      <div className="custom-container text-center">
+        <ChefList></ChefList>
+        <Services></Services>
+        <Reviews></Reviews>
+      </div>
     </div>
   );
 };

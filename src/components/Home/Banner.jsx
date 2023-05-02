@@ -3,8 +3,29 @@ import React from "react";
 const Banner = () => {
   return (
     <div>
-      This is banner section. It will be a carousel with 3 intro. the image will
-      be the background.{" "}
+      {" "}
+      <div className="bg-gradient-to-r from-neutral-800 to-neutral-800">
+        {" "}
+        <div className=" bg-[url('https://images.unsplash.com/photo-1611518040286-9af8ba97ab46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')] w-full bg-cover bg-center ">
+          <div className="custom-container lg:pb-0 sm:pb-0">
+            <div className=" items-center">
+              <div className="text-center ">
+                <h1 className="mt-6 lg:mt-16 mb-6 font-extrabold text-5xl leading-tight text-white">
+                  We Have The Best <br />{" "}
+                  <span className="text-green-500">Japanese</span> Chefs
+                </h1>
+                <p className="text-white text-xl mb-10">
+                  Find your favorite dish with us. <br /> After trying our
+                  meals, you'll never look back
+                </p>
+                <button className="mt-5 mb-10 px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg ">
+                  Make Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
