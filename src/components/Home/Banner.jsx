@@ -10,7 +10,7 @@ const Banner = () => {
           <div className="custom-container lg:pb-0 sm:pb-0">
             <div className=" items-center">
               <div className="text-center ">
-                <h1 className="mt-6 lg:mt-16 mb-6 font-extrabold text-5xl leading-tight text-white">
+                <h1 className="mt-6 lg:mt-24 lg:pt-10 mb-6 font-extrabold text-5xl lg:text-6xl leading-tight text-white">
                   We Have The Best <br />{" "}
                   <span className="text-green-500">Japanese</span> Chefs
                 </h1>
@@ -18,7 +18,7 @@ const Banner = () => {
                   Find your favorite dish with us. <br /> After trying our
                   meals, you'll never look back
                 </p>
-                <button className="mt-5 mb-10 px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg ">
+                <button className="mt-5 mb-24 px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg ">
                   Make Order
                 </button>
               </div>
