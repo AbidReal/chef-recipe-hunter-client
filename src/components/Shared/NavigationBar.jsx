@@ -10,7 +10,7 @@ const NavigationBar = () => {
         <div className="custom-container">
           <div className="relative flex items-center justify-between">
             <Link to="/" className="font-extrabold text-3xl ">
-              Y<span className=" text-green-600 ">umami</span> Eats
+              Y<span className=" text-green-500 ">umami</span> Eats
             </Link>
             {/* nav section  */}
 
@@ -37,7 +37,7 @@ const NavigationBar = () => {
               </li>
             </ul>
             <div className="flex items-center space-x-4 md:space-x-10">
-              <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg hover:from-btnBar hover:to-btnNav ">
+              <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
                 Login
               </button>
               <div className="lg:hidden">
@@ -53,7 +53,7 @@ const NavigationBar = () => {
                         <Link to="/" className="font-extrabold text-3xl ">
                           JobZone
                         </Link>
-                        <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg hover:from-btnBar hover:to-btnNav ">
+                        <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
                           Start Applying
                         </button>
                         {/* dropdown close button */}
