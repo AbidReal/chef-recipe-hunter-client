@@ -1,10 +1,16 @@
 import React from "react";
+import Banner from "./Banner";
+import ChefList from "./ChefList";
+import Reviews from "./Reviews";
+import Services from "./Services";
 
 const Home = () => {
   return (
-    <div>
-      {" "}
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="custom-container text-center">
+      <Banner></Banner>
+      <ChefList></ChefList>
+      <Services></Services>
+      <Reviews></Reviews>
     </div>
   );
 };

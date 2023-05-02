@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-color {
+  @apply bg-gradient-to-r from-btnNav to-btnBar;
+}
+.custom-container {
+  @apply px-4 py-5 mx-auto sm:max-w-xl md:max-w-xl lg:max-w-screen-xl md:px-5;
+}
