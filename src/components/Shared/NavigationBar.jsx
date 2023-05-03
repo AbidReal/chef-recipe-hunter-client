@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../providers/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const NavigationBar = () => {
+  const { user } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -22,7 +25,7 @@ const NavigationBar = () => {
             </Link>
             {/* nav section  */}
 
-            <ul className="items-center hidden space-x-8 lg:flex">
+            <ul className="items-center hidden space-x-8 lg:flex text-2xl">
               <li>
                 <NavLink
                   to="/"
@@ -45,14 +48,35 @@ const NavigationBar = () => {
               </li>
             </ul>
             <div className="flex items-center space-x-4 md:space-x-10">
-              <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
-                Login
-              </button>
+              <div className="flex items-center gap-5">
+                {user && (
+                  <NavLink className="text-5xl">
+                    <FaUserCircle></FaUserCircle>
+                  </NavLink>
+                )}
+
+                {user ? (
+                  <Link>
+                    <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
+                      Logout
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
+                      Login
+                    </button>
+                  </Link>
+                )}
+              </div>
+
               <div className="lg:hidden ">
                 <button onClick={() => setIsMenuOpen(true)}>
                   <Bars3Icon className="w-6"></Bars3Icon>
                 </button>
-                {/* mobile responsive nav bar */}
+                {/* 
+                mobile responsive nav bar 
+                */}
                 {isMenuOpen && (
                   <div className="absolute top-0 left-0 w-full z-10">
                     <div className="p-5 bg-nav border rounded-lg shadow-sm">

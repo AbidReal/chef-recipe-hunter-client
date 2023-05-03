@@ -18,7 +18,7 @@ const ChefList = () => {
           <h1 className=" font-extrabold text-6xl mb-6 mt-24">Our Chefs</h1>
           <p>Explore the chefs and their recipes</p>
         </div>
-        <div className=" mt-10 items-center grid gap-6 mb-8 lg:grid-cols-3 md:grid-cols-1">
+        <div className=" mt-10 items-center grid gap-20 mb-8 lg:grid-cols-3 md:grid-cols-1">
           {chefs.map(
             ({
               chef_id,
@@ -50,7 +50,7 @@ const ChefList = () => {
                   </div>
                   <div className="mt-auto">
                     <Link to={`chef/${chef_id}`}>
-                      <button className="mb-5 px-4 w-10/12 py-3 text-green-500 border border-green-500 hover:text-green-400 hover:border-green-400 font-extrabold md:text-lg rounded-lg">
+                      <button className="mb-5 px-4 w-10/12 py-3 text-green-500 border border-green-500 hover:text-green-400 hover:border-green-400 font-extrabold md:text-md rounded-lg">
                         View Recipes
                       </button>
                     </Link>
