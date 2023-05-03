@@ -15,7 +15,7 @@ const ChefList = () => {
     <div>
       <div>
         <div className=" text-center">
-          <h1 className=" font-extrabold text-6xl mb-6">Our Chefs</h1>
+          <h1 className=" font-extrabold text-6xl mb-6 mt-24">Our Chefs</h1>
           <p>Explore the chefs and their recipes</p>
         </div>
         <div className=" mt-10 items-center grid gap-6 mb-8 lg:grid-cols-3 md:grid-cols-1">
