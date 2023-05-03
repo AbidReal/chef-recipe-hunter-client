@@ -5,18 +5,26 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChefDetails = () => {
-  const [favorites, setFavorites] = useState({});
+  // const [favorites, setFavorites] = useState({});
 
-  const handleClick = (recipeId) => {
-    setFavorites((prevFavorites) => ({
-      ...prevFavorites,
-      [recipeId]: !prevFavorites[recipeId],
-    }));
-    const message = favorites[recipeId]
-      ? "Recipe removed from favorites"
-      : "Recipe added to favorites";
-    toast.success(message);
-  };
+  // const handleClick = (recipeId) => {
+  //   setFavorites((prevFavorites) => ({
+  //     ...prevFavorites,
+  //     [recipeId]: !prevFavorites[recipeId],
+  //   }));
+  //   const message = favorites[recipeId]
+  //     ? "Recipe removed from favorites"
+  //     : "Recipe added to favorites";
+  //   toast.success(message);
+  // };
+
+  const [buttonStates, setButtonStates] = useState({});
+
+  function handleClick(recipeId) {
+    setButtonStates({ ...buttonStates, [recipeId]: true });
+    toast.success("Recipe added to Favorite");
+  }
+
   const { id } = useParams();
   const chefDetails = useLoaderData();
   // console.log(chefDetails);
@@ -83,17 +91,6 @@ const ChefDetails = () => {
             >
               <div className=" text-center font-extrabold text-3xl pb-10 relative">
                 {recipe_name}
-                <div
-                  onClick={() => handleClick(recipe_id)}
-                  className="text-green-400 hover:text-green-300"
-                >
-                  {favorites[recipe_id] ? (
-                    <BsHeartFill className="absolute top-1 right-0 stroke-current" />
-                  ) : (
-                    <BsHeart className="absolute top-1 right-0 stroke-current" />
-                  )}
-                  <ToastContainer></ToastContainer>
-                </div>
               </div>
 
               <div className="font-bold pb-2 ">Ingredients:</div>
@@ -109,10 +106,25 @@ const ChefDetails = () => {
                 ))}
               </ol>
               <div className="font-bold pt-6">Rating: {rating}</div>
+              <div className="flex justify-between">
+                <div></div>
+                <button
+                  onClick={() => handleClick(recipe_id)}
+                  disabled={buttonStates[recipe_id]}
+                  className={`px-4 py-2 rounded-md text-white ${
+                    buttonStates[recipe_id]
+                      ? "bg-green-200 cursor-default"
+                      : "bg-green-500 hover:bg-green-400"
+                  }`}
+                >
+                  Add Favorite
+                </button>
+              </div>
             </div>
           )
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
