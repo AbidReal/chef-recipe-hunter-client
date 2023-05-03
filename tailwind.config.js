@@ -9,8 +9,13 @@ export default {
     extend: {
       colors: {
         nav: "#f0fff5",
+        foot: "#3d4451",
       },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  daisyui: {
+    themes: false,
+  },
+
+  plugins: [require("flowbite/plugin"), require("daisyui")],
 };

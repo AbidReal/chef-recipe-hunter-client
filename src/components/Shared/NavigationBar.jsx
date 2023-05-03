@@ -10,7 +10,7 @@ const NavigationBar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   return (
-    <div>
+    <div className="">
       <div
         className={` ${
           isHomePage

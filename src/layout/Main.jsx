@@ -7,10 +7,13 @@ import NavigationBar from "../components/Shared/NavigationBar";
 
 const Main = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen ">
       <NavigationBar></NavigationBar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+      <div className="flex-grow">
+        <Outlet></Outlet>
+      </div>
+
+      <Footer className="mt-auto"></Footer>
     </div>
   );
 };
