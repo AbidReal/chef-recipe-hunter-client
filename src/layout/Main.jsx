@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router";
 import Home from "../components/Home/Home";
 
 import Footer from "../components/Shared/Footer";
@@ -8,8 +9,7 @@ const Main = () => {
   return (
     <div>
       <NavigationBar></NavigationBar>
-      <Home></Home>
-
+      <Outlet></Outlet>
       <Footer></Footer>
     </div>
   );

@@ -10,7 +10,7 @@ const ChefList = () => {
       .then((data) => setChefs(data))
       .catch((error) => console.error(error));
   }, []);
-  console.log(chefs);
+  // console.log(chefs);
   return (
     <div>
       <div>
@@ -49,7 +49,7 @@ const ChefList = () => {
                     </p>
                   </div>
                   <div className="mt-auto">
-                    <Link to={`job-details/`}>
+                    <Link to={`chef/${chef_id}`}>
                       <button className="mb-5 px-4 w-10/12 py-3 text-green-500 border border-green-500 hover:text-green-400 hover:border-green-400 font-extrabold md:text-lg rounded-lg">
                         View Recipes
                       </button>

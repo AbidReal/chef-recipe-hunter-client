@@ -9,10 +9,6 @@ export default {
     extend: {
       colors: {
         nav: "#f0fff5",
-        bar: "#f0fff5",
-        btnNav: "rgba(126, 144, 254, 1)",
-        btnBar: "rgba(152, 115, 255, 1)",
-        bgJobIcon: "rgba(152, 115, 255, 0.1)",
       },
     },
   },

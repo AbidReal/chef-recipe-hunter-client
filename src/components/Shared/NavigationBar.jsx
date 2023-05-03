@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   return (
     <div>
-      <div className="bg-gradient-to-r from-nav to-bar ">
+      <div
+        className={` ${
+          isHomePage
+            ? "bg-nav lg:bg-transparent lg:absolute lg:w-full lg:text-white"
+            : "bg-nav"
+        }`}
+      >
         <div className="custom-container">
           <div className="relative flex items-center justify-between">
             <Link to="/" className="font-extrabold text-3xl ">
@@ -40,18 +48,18 @@ const NavigationBar = () => {
               <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
                 Login
               </button>
-              <div className="lg:hidden">
+              <div className="lg:hidden ">
                 <button onClick={() => setIsMenuOpen(true)}>
                   <Bars3Icon className="w-6"></Bars3Icon>
                 </button>
                 {/* mobile responsive nav bar */}
                 {isMenuOpen && (
                   <div className="absolute top-0 left-0 w-full z-10">
-                    <div className="p-5 bg-indigo-50 border rounded-lg shadow-sm">
+                    <div className="p-5 bg-nav border rounded-lg shadow-sm">
                       {/* logo */}
                       <div className="flex items-center justify-between mg-4">
                         <Link to="/" className="font-extrabold text-3xl ">
-                          JobZone
+                          Y<span className="text-green-500">umami</span> Eats
                         </Link>
                         <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
                           Login
