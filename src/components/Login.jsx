@@ -1,13 +1,44 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/Bs";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // git sign in
+  const handleGitSignIn = () => {
+    gitSignInPopUp()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  //   google sign in
+  const handleGoogleSignIn = () => {
+    googleSignInPopUp()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  //   context api
+  const { signIn, googleSignInPopUp, gitSignInPopUp } = useContext(AuthContext);
   const [error2, setError2] = useState("");
+  //   email sign in
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -19,6 +50,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -26,6 +58,7 @@ const Login = () => {
       });
     setError2("");
   };
+
   return (
     <div className=" my-32 mx-auto w-5/6 lg:w-1/3 ">
       <form onSubmit={handleLogin} className="flex flex-col gap-4">
@@ -81,8 +114,14 @@ const Login = () => {
         Or use one of these options{" "}
       </div>
       <div className="flex gap-10 text-center items-center justify-center text-4xl">
-        <FcGoogle />
-        <BsGithub />
+        <FcGoogle
+          onClick={handleGoogleSignIn}
+          className="hover:scale-110 transform transition-all duration-300 ease-in-out"
+        />
+        <BsGithub
+          onClick={handleGitSignIn}
+          className="hover:scale-110 transform transition-all duration-300 ease-in-out"
+        />
       </div>
     </div>
   );

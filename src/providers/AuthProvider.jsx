@@ -1,24 +1,66 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const gitProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const user = null;
-
+  const [user, setUser] = useState(null);
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const authInfo = { user, createUser, signIn };
+  const googleSignInPopUp = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+  const gitSignInPopUp = () => {
+    return signInWithPopup(auth, gitProvider);
+  };
+  const userProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: `${name}`,
+      photoURL: `${photo}`,
+    });
+  };
+
+  const logOut = () => {
+    return signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
+      console.log("logged in user inside auth state observer", loggedUser);
+      setUser(loggedUser);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const authInfo = {
+    user,
+    createUser,
+    signIn,
+    googleSignInPopUp,
+    gitSignInPopUp,
+    logOut,
+    userProfile,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

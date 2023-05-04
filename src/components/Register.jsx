@@ -1,12 +1,14 @@
 import { Button, Checkbox, FileInput, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [error1, setError1] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const [error3, setError3] = useState("");
+  const { createUser, userProfile } = useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -20,12 +22,21 @@ const Register = () => {
       .then((result) => {
         const createdUser = result.user;
         console.log(createdUser);
+        navigate("/login");
+        userProfile(name, photo)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
+        setError3(error.message);
       });
+
     setError("");
     setError1("");
+    setError3("");
     if (password.length < 6) {
       setError("Password must be 6 characters long");
     } else if (email.length < 1 || password.length < 1) {
@@ -118,6 +129,7 @@ const Register = () => {
           Register new account
         </Button>
         <p className="text-red-500">{error1}</p>
+        <p className="text-red-500">{error3}</p>
       </form>
     </div>
   );

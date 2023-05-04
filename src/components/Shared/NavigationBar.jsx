@@ -3,12 +3,19 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
+import { signOut } from "firebase/auth";
 
 const NavigationBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.log(error));
+  };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+
   return (
     <div className="">
       <div
@@ -50,20 +57,39 @@ const NavigationBar = () => {
             <div className="flex items-center space-x-4 md:space-x-10">
               <div className="flex items-center gap-5">
                 {user && (
-                  <NavLink className="text-5xl">
-                    <FaUserCircle></FaUserCircle>
+                  <NavLink className="text-5xl hidden lg:block">
+                    <div className=" object-cover relative group  ">
+                      {user.photoURL ? (
+                        <img
+                          className="h-14 w-14 rounded-full ring-4 ring-green-400 "
+                          src={user?.photoURL}
+                        ></img>
+                      ) : (
+                        <FaUserCircle className="text-green-500 h-14 w-14"></FaUserCircle>
+                      )}
+
+                      {user.displayName && (
+                        <div
+                          className="absolute bg-gray-800 text-white py-1 px-2 rounded-md text-sm pointer-events-none transition-opacity opacity-0 group-hover:opacity-100  "
+                          style={{ whiteSpace: "nowrap" }}
+                        >
+                          {user?.displayName}
+                        </div>
+                      )}
+                    </div>
                   </NavLink>
                 )}
 
                 {user ? (
-                  <Link>
-                    <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
-                      Logout
-                    </button>
-                  </Link>
+                  <button
+                    onClick={handleLogOut}
+                    className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg hidden lg:flex "
+                  >
+                    Logout
+                  </button>
                 ) : (
                   <Link to="/login">
-                    <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
+                    <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg hidden lg:flex ">
                       Login
                     </button>
                   </Link>
@@ -85,9 +111,7 @@ const NavigationBar = () => {
                         <Link to="/" className="font-extrabold text-3xl ">
                           Y<span className="text-green-500">umami</span> Eats
                         </Link>
-                        <button className=" px-4 md:px-7 py-4 btn-color text-white font-extrabold md:text-lg rounded-lg  ">
-                          Login
-                        </button>
+
                         {/* dropdown close button */}
                         <div>
                           <button onClick={() => setIsMenuOpen(false)}>
@@ -114,6 +138,45 @@ const NavigationBar = () => {
                             >
                               Blog
                             </Link>
+                          </li>
+                          <li>
+                            {user ? (
+                              <div className="flex flex-col gap-5">
+                                <NavLink className="text-5xl  lg:hidden">
+                                  <div className=" object-cover relative group  ">
+                                    {user.photoURL ? (
+                                      <img
+                                        className="h-10 w-10 "
+                                        src={user?.photoURL}
+                                      ></img>
+                                    ) : (
+                                      <FaUserCircle className="text-green-500 h-14 w-14"></FaUserCircle>
+                                    )}
+
+                                    {user.displayName && (
+                                      <div
+                                        className="absolute bg-gray-800 text-white py-1 px-2 rounded-md text-sm pointer-events-none transition-opacity opacity-0 group-hover:opacity-100  "
+                                        style={{ whiteSpace: "nowrap" }}
+                                      >
+                                        {user?.displayName}
+                                      </div>
+                                    )}
+                                  </div>
+                                </NavLink>
+                                <button
+                                  onClick={handleLogOut}
+                                  className=" px-4  py-3 btn-color text-white font-extrabold md:text-lg rounded-lg mr-auto "
+                                >
+                                  Logout
+                                </button>
+                              </div>
+                            ) : (
+                              <Link to="/login">
+                                <button className=" px-4 md:px-7 py-3 btn-color text-white font-extrabold md:text-lg rounded-lg lg:flex ">
+                                  Login
+                                </button>
+                              </Link>
+                            )}
                           </li>
                         </ul>
                       </nav>
