@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SlLike } from "react-icons/Sl";
+import { Spinner } from "flowbite-react";
 
 const ChefList = () => {
+  const [loading, setLoading] = useState(false);
   const [chefs, setChefs] = useState([]);
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:5000/chefs")
       .then((res) => res.json())
       .then((data) => setChefs(data))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
+  if (loading) {
+    return (
+      <div className="flex h-screen justify-center items-center ">
+        <Spinner
+          className="h-40 w-40 items-center  text-center "
+          color="success"
+          aria-label="Success spinner example"
+        />
+      </div>
+    );
+  }
+
   // console.log(chefs);
   return (
     <div>
