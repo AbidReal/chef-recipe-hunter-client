@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LazyLoad from "react-lazy-load";
 
 const ChefDetails = () => {
   // const [favorites, setFavorites] = useState({});
@@ -65,11 +66,13 @@ const ChefDetails = () => {
           </div>
           {/* chef img */}
           <div style={{ height: "500px" }} className=" overflow-hidden my-10 ">
-            <img
-              src={chef_img}
-              alt="chef image"
-              className="object-cover w-full"
-            />
+            <LazyLoad height={500} offset={100} threshold={1}>
+              <img
+                src={chef_img}
+                alt="chef image"
+                className="object-cover w-full"
+              />
+            </LazyLoad>
           </div>
         </div>
       </div>

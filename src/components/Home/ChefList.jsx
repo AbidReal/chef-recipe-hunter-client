@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SlLike } from "react-icons/Sl";
 import { Spinner } from "flowbite-react";
+import LazyLoad from "react-lazy-load";
 
 const ChefList = () => {
   const [loading, setLoading] = useState(false);
@@ -51,11 +52,17 @@ const ChefList = () => {
                 className=" border border-green-200 text-center rounded-lg grid grid-cols-2"
               >
                 <div className="  overflow-hidden ">
-                  <img
-                    src={chef_img}
-                    alt="icon"
-                    className="object-cover h-full w-50 rounded-l-lg"
-                  />
+                  {/*
+                   I Have Made the lazyloader threshold{} so that you can easily tell that the code is working as intended.
+                   Otherwise I would have preferred offset{}
+                   */}
+                  <LazyLoad height={260} threshold={0.5}>
+                    <img
+                      src={chef_img}
+                      alt="icon"
+                      className="object-cover h-full w-50 rounded-l-lg"
+                    />
+                  </LazyLoad>
                 </div>
                 <div className="flex flex-col font-medium">
                   <p className="my-1 font-bold text-3xl">{chef_name}</p>
