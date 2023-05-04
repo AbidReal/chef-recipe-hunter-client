@@ -11,8 +11,8 @@ const Home = () => {
       <div className="custom-container text-center">
         <ChefList></ChefList>
         <Reviews></Reviews>
-        <Services></Services>
       </div>
+      <Services></Services>
     </div>
   );
 };

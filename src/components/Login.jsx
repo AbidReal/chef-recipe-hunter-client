@@ -2,7 +2,7 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import { FcGoogle } from "react-icons/fc";
+import { FcGoogle } from "react-icons/Fc";
 import { BsGithub } from "react-icons/Bs";
 
 const Login = () => {

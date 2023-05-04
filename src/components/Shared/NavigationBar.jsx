@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
-import { signOut } from "firebase/auth";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);

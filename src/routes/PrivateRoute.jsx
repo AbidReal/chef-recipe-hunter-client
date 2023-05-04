@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="flex h-screen justify-center items-center ">
         <Spinner
-          className="h-40 w-40 items-center  text-center "
+          className="h-44 w-44 items-center text-lg  text-center "
           color="success"
           aria-label="Success spinner example"
         />

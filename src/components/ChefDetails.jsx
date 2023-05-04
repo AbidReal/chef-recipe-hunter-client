@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
-import { BsHeart, BsHeartFill } from "react-icons/Bs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
