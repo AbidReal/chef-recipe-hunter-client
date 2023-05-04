@@ -17,17 +17,18 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    console.log(name, photo, email, password);
+    // console.log(name, photo, email, password);
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
-        console.log(createdUser);
-        navigate("/login");
+        // console.log(createdUser);
+
         userProfile(name, photo)
           .then(() => {})
           .catch((error) => {
             console.log(error);
           });
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error);

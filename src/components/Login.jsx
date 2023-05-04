@@ -1,6 +1,6 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/Bs";
@@ -8,15 +8,18 @@ import { BsGithub } from "react-icons/Bs";
 const Login = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  //   console.log("login page location ", location);
+  const from = location.state?.from?.pathname || "/";
 
   // git sign in
   const handleGitSignIn = () => {
     gitSignInPopUp()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
-        navigate("/");
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -27,9 +30,9 @@ const Login = () => {
     googleSignInPopUp()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         setUser(loggedInUser);
-        navigate("/");
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -44,13 +47,13 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate("/");
+        // console.log(loggedUser);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error);
