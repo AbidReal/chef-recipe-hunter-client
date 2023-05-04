@@ -66,7 +66,7 @@ const ChefDetails = () => {
           </div>
           {/* chef img */}
           <div style={{ height: "500px" }} className=" overflow-hidden my-10 ">
-            <LazyLoad height={500} offset={100} threshold={1}>
+            <LazyLoad offset={100}>
               <img
                 src={chef_img}
                 alt="chef image"

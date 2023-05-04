@@ -26,7 +26,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/chefs/${params.id}`),
+          fetch(
+            `https://chef-recipe-hunter-server-abidreal.vercel.app/chefs/${params.id}`
+          ),
       },
       {
         path: "/blog",

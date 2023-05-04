@@ -17,6 +17,7 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
+    const from = location.state?.from?.pathname || "/login";
     // console.log(name, photo, email, password);
     createUser(email, password)
       .then((result) => {
@@ -28,7 +29,7 @@ const Register = () => {
           .catch((error) => {
             console.log(error);
           });
-        navigate("/login");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
